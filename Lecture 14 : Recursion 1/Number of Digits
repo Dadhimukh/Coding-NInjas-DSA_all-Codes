@@ -1,0 +1,17 @@
+public class Solution {
+
+	public static int count(int n){
+		//Write your code here
+    {
+        int count = 0;
+        while (n != 0) {
+            n = n / 10;
+            ++count;
+        }
+        return count;
+    }
+    }
+}
+
+            
+   
