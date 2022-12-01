@@ -1,0 +1,37 @@
+import java.util.Scanner;
+public class solution {
+    static boolean isStringPalindrome(String str,
+            int s, int e)
+{
+        if (s == e)
+            return true;
+ 
+        if ((str.charAt(s)) != (str.charAt(e)))
+            return false;
+        if (s < e + 1)
+            return isStringPalindrome(str, s + 1, e - 1);
+ 
+        return true;
+    }
+ 
+    static boolean isStringPalindrome(String str)
+    {
+        int n = str.length();
+        if (n == 0)
+            return true;
+ 
+        return isStringPalindrome(str, 0, n - 1);
+    }
+
+
+public static void main(String args[])
+{
+	Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+
+    if (isStringPalindrome(str))
+        System.out.println("true");
+    else
+        System.out.println("false");
+}
+}
