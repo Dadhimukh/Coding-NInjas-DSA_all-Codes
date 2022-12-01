@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class solution {
+
+    public static void mergeSort(int[] input) {
+        if (input.length<=1) {
+            return;
+        }
+        int arr1[] = new int[input.length/2];
+        int arr2[] = new int[input.length - arr1.length];
+        for(int i = 0; i<input.length/2; i++) {
+            arr1[i] = input[i];
+        }
+        for(int i=input.length/2; i < input.length; i++) {
+            arr2[i - input.length/2] = input[i];
+        }
+        mergeSort(arr1);
+        mergeSort(arr2);
+        merge(arr1,arr2,input);
+    }
+    public static void merge(int s1[],int s2[],int []d) {
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        while(i<s1.length && j<s2.length) {
+            if(s1[i] <= s2[j]) {
+                d[k] = s1[i];
+                i++;
+                k++;
+            }else {
+                d[k] = s2[j];
+                k++;
+                j++;
+            }
+        }
+        if(i < s1.length) {
+            while(i<s1.length) {
+                d[k] = s1[i];
+                i++;
+                k++;
+            }
+        }
+        if(j<s2.length) {
+            while(j<s2.length) {
+                d[k] = s2[j];
+                k++;
+                j++;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        int input[] = new int [size];
+        for(int i = 0; i<size; i++) {
+            input[i] = sc.nextInt();
+        }
+        mergeSort(input);
+        for(int i = 0; i<input.length; i++) {
+            System.out.println(input[i]);
+        }
+    }
+}
