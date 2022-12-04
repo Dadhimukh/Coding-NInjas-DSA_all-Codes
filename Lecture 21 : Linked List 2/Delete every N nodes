@@ -1,0 +1,63 @@
+/*
+
+    Following is the Node class already written for the Linked List
+
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+*/
+
+
+
+public class Solution {
+
+    public static LinkedListNode<Integer> skipMdeleteN(LinkedListNode<Integer> head, int M, int N) {
+
+        if (M == 0 || head == null) {
+            return null;
+        }
+
+        if (N == 0){
+            return head;
+        }
+
+        LinkedListNode<Integer> currentNode = head;
+        LinkedListNode<Integer> temp = null;
+
+
+        while (currentNode != null) {
+            int take = 0;
+            int skip = 0;
+
+            while (currentNode != null && take < M) {
+
+                if (temp == null) {
+                    temp = currentNode;
+                } else {
+                    temp.next = currentNode;
+                    temp = currentNode;
+                }
+
+                currentNode = currentNode.next;
+                take += 1;
+            }
+
+            while (currentNode != null && skip < N) {
+                currentNode = currentNode.next;
+                skip += 1;
+            }
+        }
+
+        if (temp != null) {
+            temp.next = null;
+        }
+
+        return head;
+    }
+}
