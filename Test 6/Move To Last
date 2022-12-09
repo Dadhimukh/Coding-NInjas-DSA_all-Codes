@@ -1,0 +1,70 @@
+/***********
+ 
+Following is the Linked list node structure already written 
+ 
+class Node<T> {
+    public T data;
+    public Node<T> next;
+    public Node(T data) {
+		 this.data=data;
+	 }
+}
+
+************/
+
+
+public class Solution {
+
+
+	public static Node<Integer> func(Node<Integer> head,int n) {
+        /* Your class should be named Solution
+         * Don't write main().
+         * Don't read input, it is passed as function argument.
+         * Return output and don't print it.
+         * Taking input and printing output is handled automatically.
+         */
+        
+        
+        Node<Integer> temp = head, prev = null, last = null;
+        int len = 1;
+        while(temp.next != null)
+        {
+            len ++;
+            temp = temp.next;
+        }
+        last = temp;
+        temp = head;
+        
+        for(int i = 0; i < len; i++)
+        {
+            if(temp.data == n)
+            {
+                if(prev == null)
+                {
+                    Node<Integer> temp2 = new Node<Integer>(temp.data);
+                    head = head.next;
+                    last.next = temp2;
+                    prev = null;
+                    temp = head;
+                }
+                else
+                {
+                    Node<Integer> temp2 = new Node<Integer>(temp.data);
+                    prev.next = temp.next;
+                    last.next = temp2;
+                    temp = temp.next;
+                }
+                last = last.next;
+            }
+            else
+            {
+                prev = temp;
+                temp = temp.next;
+            }
+        }
+        return head;
+       		
+	}
+
+}
+
