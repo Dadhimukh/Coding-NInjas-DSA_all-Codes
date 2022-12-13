@@ -1,0 +1,63 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+class Pair {
+	int diameter;
+	int height;
+
+	public Pair(int diameter, int height) {
+		this.diameter = diameter;
+		this.height = height;
+	}
+
+}
+
+public class Solution {
+
+	private static Pair diameterHelper(BinaryTreeNode<Integer> root) {
+		if(root == null) {
+			Pair pair = new Pair(0, 0);
+			return pair;
+		}
+
+		Pair leftPair = diameterHelper(root.left);
+		Pair rightPair = diameterHelper(root.right);
+		
+		int leftDiameter = leftPair.diameter;
+		int rightDiameter = rightPair.diameter;
+
+		/*
+        	'dist' denotes the longest distance between 
+        	deepest node of the left subtree and
+        	deepest node of the right subtree
+    	*/
+		int dist = leftPair.height + rightPair.height + 1;
+
+		int diameter = Math.max(leftDiameter, Math.max(rightDiameter, dist));
+		int height = Math.max(leftPair.height,rightPair.height) + 1;
+		
+
+		return (new Pair(diameter, height));
+	}
+
+	public static int diameterOfBinaryTree(BinaryTreeNode<Integer> root){
+		Pair pair = diameterHelper(root);
+		return pair.diameter;
+	}
+	
+}
