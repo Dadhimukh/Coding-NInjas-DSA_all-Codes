@@ -1,0 +1,31 @@
+public class Solution {
+
+	/*	Binary Tree Node class 
+	 * 
+	 * 	class BinaryTreeNode<T> {
+			T data;
+			BinaryTreeNode<T> left;
+			BinaryTreeNode<T> right;
+			
+			public BinaryTreeNode(T data) {
+				this.data = data;
+			}
+		}
+		*/
+	
+		public static BinaryTreeNode<Integer> SortedArrayToBST(int[] arr, int n){
+			return SortedArrayToBSTHelper(arr,0,n-1);
+		}
+		
+		private static BinaryTreeNode<Integer> SortedArrayToBSTHelper(int[] arr, int start, int end) {
+			if(start > end ) {
+				return null;
+			}
+			int mid = start + (end-start)/2;
+			
+			BinaryTreeNode<Integer> temp = new BinaryTreeNode<Integer>(arr[mid]);
+			temp.left = SortedArrayToBSTHelper(arr, start, mid-1);
+			temp.right = SortedArrayToBSTHelper(arr, mid+1, end);
+			return temp;
+		}
+}
