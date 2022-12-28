@@ -1,0 +1,20 @@
+public class solution {
+	public static void printSubsetsSumTok(int input[], int k) {
+		// Write your code here
+            printSubsetsSumTok_(input,0,"",k);
+    }
+    public static void printSubsetsSumTok_(int input[],int index,String ans,int k)
+    {
+        if(k == 0)
+        {
+            System.out.println(ans);
+            return;
+        }
+        if(index == input.length)
+        {
+            return;
+        }
+        printSubsetsSumTok_(input,index+1,ans+input[index] + " ",k - input[index]);
+        printSubsetsSumTok_(input,index+1,ans,k);
+        }
+}
