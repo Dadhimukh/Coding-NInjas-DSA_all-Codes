@@ -1,0 +1,30 @@
+public class solution {
+
+	public static void permutations(String input){
+		
+        
+        permutations_(input, "");
+	}
+    
+    public static void permutations_(String input, String cur){
+		
+        if (input.length() == 0) {
+            
+            System.out.println(cur);
+            return;
+        }
+        
+        for (int i = 0; i < input.length(); i++) {
+            
+            char ch = input.charAt(i);
+            
+            String first = input.substring(0, i);
+            String second = input.substring(i + 1);
+            
+            
+            String newStr = first + second;
+            
+            permutations_(newStr, cur + ch);
+        }
+    }
+}
