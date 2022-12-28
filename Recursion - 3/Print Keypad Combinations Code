@@ -1,0 +1,32 @@
+public class solution {
+
+        
+    static String codes[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+	public static void printKeypad(int input){
+		
+        printKeypad(input, "");
+	}
+    
+    public static void printKeypad(int input, String ans) {
+        
+        if (input == 0) {
+            
+            System.out.println(ans);
+            return;
+        }
+        
+        int val = input % 10;
+        
+        String code = codes[val];
+        
+        for (int i = 0; i < code.length(); i++) {
+            
+            char ch = code.charAt(i);
+            
+            printKeypad(input/10, ch + ans);
+        }
+        
+    }
+	
+}
