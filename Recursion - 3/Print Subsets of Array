@@ -1,0 +1,21 @@
+public class solution {
+    public static void printSubsets(int input[]) {
+        // Write your code here
+
+
+        int n = input.length;
+
+        // Run a loop for printing all 2^n
+        // subsets one by one
+        for (int i = 0; i < (1<<n); i++)
+        { 
+            // Print current subset
+            for (int j = 0; j < n; j++)
+
+                if ((i & (1 << j)) > 0)
+                    System.out.print(input[j] + " ");
+
+            System.out.println("");
+        }
+    }
+}
