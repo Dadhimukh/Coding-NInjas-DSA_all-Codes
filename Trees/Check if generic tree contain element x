@@ -1,0 +1,32 @@
+public class Solution {
+
+/*	TreeNode class 
+ * 
+ * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+	
+
+		// Write your code here
+public static boolean checkIfContainsX(TreeNode<Integer> root, int x){
+	if(root == null){
+		return false;
+	}
+	if(root.data == x){
+		return true;
+	}
+	for(TreeNode<Integer> child : root.children){
+		if(checkIfContainsX(child, x)){
+			return true;
+		}
+	}
+	return false;
+}
+
+}	
