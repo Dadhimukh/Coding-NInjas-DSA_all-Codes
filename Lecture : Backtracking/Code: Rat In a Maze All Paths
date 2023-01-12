@@ -1,0 +1,56 @@
+/*
+	Note:
+	To get all the test cases accepted, make recursive calls in following order: Top, Down, Left, Right.
+	This means that if the current cell is (x, y), then order of calls should be: top cell (x-1, y), 
+	down cell (x+1, y), left cell (x, y-1) and right cell (x, y+1).
+*/  
+
+public class Solution {
+
+
+	static void ratInAMaze(int maze[][], int n) {
+
+		boolean visited[][] = new boolean[n][n];
+
+        ratInAMaze(maze, 0, 0, visited, n);
+	}
+    
+    public static void ratInAMaze(int maze[][], int i, int j, boolean visited[][], int n) {
+    
+        if (i < 0 || j < 0 || i >= n || j >= n || visited[i][j] == true || maze[i][j] == 0)
+            return;
+        
+        visited[i][j] = true;
+        
+        if (i == n - 1 && j == n - 1) {
+            
+            for (int t = 0; t < n; t++) {
+                
+                for (int m = 0; m < n; m++) {
+                    
+                    if (visited[t][m] == true)
+                        System.out.print("1 ");
+                    
+                    else
+                        System.out.print("0 ");
+                }
+            }
+            
+            System.out.println();
+            
+            visited[i][j] = false;
+            return;
+        }
+        
+        ratInAMaze(maze, i+1, j, visited, n);
+        
+		ratInAMaze(maze, i-1, j, visited, n);
+
+        ratInAMaze(maze, i, j+1, visited, n);
+        
+        ratInAMaze(maze, i, j-1, visited, n);
+        
+        visited[i][j] = false;
+    }
+
+}
