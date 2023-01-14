@@ -1,0 +1,29 @@
+import java.util.Arrays;
+
+public class Solution {
+
+	public static long staircase(int n) {
+		
+        long dp[] = new long[n + 1];
+        
+        Arrays.fill(dp, -1);
+        
+        return staircase_(n, dp);
+	}
+    
+    
+    public static long staircase_(int n, long dp[]) {
+
+        if (n < 0)
+                return 0;
+
+        if (n == 0)
+            return 1;
+        
+        if (dp[n] != -1)
+            return dp[n];
+
+            return dp[n] =
+                staircase_(n-1, dp) + staircase_(n-2, dp) + staircase_(n-3, dp);
+    }
+}
