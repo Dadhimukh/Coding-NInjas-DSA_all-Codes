@@ -1,0 +1,27 @@
+public class Solution {
+
+	public static int countMinStepsToOne(int n) {
+		
+		if (n == 1) {
+			return 0;
+		}
+
+		int subtractOne = Integer.MAX_VALUE;
+	    int divideByTwo = Integer.MAX_VALUE;
+	    int divideByThree = Integer.MAX_VALUE;
+
+	    subtractOne = countMinStepsToOne(n - 1);
+	    
+	    if (n % 2 == 0) {
+	    	divideByTwo = countMinStepsToOne(n / 2);
+	    }
+
+	    if (n % 3 == 0) {
+	    	divideByThree = countMinStepsToOne(n / 3);
+	    }
+
+	    return 1 + Math.min(subtractOne, Math.min(divideByTwo, divideByThree));
+	}
+
+
+}
