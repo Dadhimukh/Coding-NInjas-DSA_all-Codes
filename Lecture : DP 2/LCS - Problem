@@ -1,0 +1,25 @@
+
+public class Solution {
+
+	public static int lcs(String s, String t) {
+
+		int m = s.length();
+		int n = t.length();
+
+		int[][] subProblems = new int[(m + 1)][(n + 1)];
+
+
+		for (int currStart = 1; currStart <= m; currStart++) {
+	        for (int currEnd = 1; currEnd <= n; currEnd++) {
+	            if (s.charAt(m - currStart) == t.charAt(n - currEnd)) {
+	                subProblems[currStart][currEnd] = 1 + subProblems[currStart - 1][currEnd - 1];
+	            } else {
+	                subProblems[currStart][currEnd] = Math.max(subProblems[currStart - 1][currEnd], subProblems[currStart][currEnd - 1]);
+	            }
+			}
+        }
+
+        return subProblems[m][n];
+    }
+
+}
