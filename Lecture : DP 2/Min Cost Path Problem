@@ -1,0 +1,31 @@
+import java.util.*;
+public class Solution {
+
+    public static int minCostPath(int[][] input) {
+        //Your code goes here
+        int dp[][] = new int [input.length][input[0].length];
+
+        for (int row[] : dp) 
+            Arrays.fill(row, -1);
+
+        return minCostPath(input, 0, 0, dp);
+    }
+
+    public static int minCostPath(int[][] input, int i, int j, int dp[][]) {
+
+        if (i >= input.length || j >= input[0].length)
+            return (int)1e9;
+
+        if (i == input.length-1 && j == input[0].length-1)
+            return input[i][j];
+
+        if (dp[i][j] != -1)
+            return dp[i][j];
+
+        int opt1 = minCostPath(input, i+1, j, dp);
+        int opt2 = minCostPath(input, i+1, j+1, dp);
+        int opt3 = minCostPath(input, i, j+1, dp);
+
+        return dp[i][j] = Math.min(opt1, Math.min(opt2, opt3)) + input[i][j];
+    }
+}
