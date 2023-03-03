@@ -1,0 +1,36 @@
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+        */
+public class Solution {
+ 
+	public static int numConnected(int[][] edges, int n) {
+        int V=edges.length; // vertices
+        boolean visted[]=new boolean[edges.length];
+        int count=0;
+ 
+        for(int i=0;i<V;i++){
+            if(visted[i]==false){
+                dft(edges,i,visted);
+                count++;
+            }
+        }
+ 
+        return count;
+	}
+    public static void dft(int[][] am,int cv,boolean[] visted){
+        visted[cv]=true;
+ 
+        for(int j=0;j<am.length;j++){
+             if(am[cv][j]==1 && visted[j]==false){
+                  dft(am,j,visted);
+             }
+        }
+ 
+ 
+    }
+ 
+ 
+}
